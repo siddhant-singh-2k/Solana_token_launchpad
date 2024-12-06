@@ -1,5 +1,6 @@
 import { useConnection,useWallet } from "@solana/wallet-adapter-react";
 import { useEffect,useState } from "react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 export function ShowBalance() {
     const {connection} = useConnection();
@@ -10,7 +11,7 @@ export function ShowBalance() {
 
     async function get_user_bal() {
         const lamports = await connection.getBalance(wallet.publicKey);
-        setBalance(lamports)
+        setBalance(lamports/LAMPORTS_PER_SOL)
         }
 
     useEffect(function(){
